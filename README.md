@@ -1,21 +1,22 @@
 # eco
 ###projekt solar repository
 
-+---diagrams
-+---public
-+---server
-    +---gradle
-        +---wrapper
-    +---src
-        +---main
-            +---java
-                +---com
-                    +---eco
+/---solar
+    +---diagrams
+    +---public
+    +---server
+        +---gradle
+            +---wrapper
+        +---src
+            +---main
+                +---java
+                    +---com
                         +---eco
-            +---resources
-        +---test
-            +---java
-                +---com
-                    +---eco
-                       +---eco
-+---text
+                            +---eco
+                +---resources
+            +---test
+                +---java
+                    +---com
+                        +---eco
+                            +---eco
+    +---text 
