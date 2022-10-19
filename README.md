@@ -1,5 +1,5 @@
 # eco
-###projekt solar repository
+### projekt solar repository
 
 ```
 +---diagrams
