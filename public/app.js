@@ -13,30 +13,42 @@ class myChartClass {
       labels: labels,
       datasets: [
         {
-          label: 'My First dataset',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          label: "My First dataset",
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgb(255, 99, 132)",
           data: [0, 30, ...d1, 300],
         },
         {
-          label: 'My second dataset',
-          backgroundColor: 'rgb(255, 165, 0)',
-          borderColor: 'rgb(255, 165, 0)',
+          label: "My second dataset",
+          backgroundColor: "rgb(255, 165, 0)",
+          borderColor: "rgb(255, 165, 0)",
           data: [0, 20, ...d2, 300],
         },
       ],
     };
 
     let config = {
-      type: 'line',
+      type: "line",
       data: data,
-      options: {},
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: (value, index, values) => {
+                console.log(values);
+                return `${value} kWh`;
+              },
+            },
+          },
+        },
+      },
     };
 
-    const myChart = new Chart(document.getElementById('myChart'), config);
+    const myChart = new Chart(document.getElementById("myChart"), config);
   }
   showChart(chart) {
-    $('#myChartDiv').append(chart);
+    $("#myChartDiv").append(chart);
   }
   getHours() {
     const arr = [];
@@ -47,7 +59,7 @@ class myChartClass {
         arr.push(`${i}:${j === 0 ? `00` : 15 * j}`);
       }
     }
-    const d = new Date('2022-10-17T00:00:00'),
+    const d = new Date("2022-10-17T00:00:00"),
       h = d.getHours(),
       m = 15 * Math.floor(d.getMinutes() / 15),
       stamp = `${h}:${m === 0 ? `00` : m}`;
@@ -68,7 +80,7 @@ class Someparent {
 
   stateName(someStr) {
     //change feld!!
-    $('#feld').text(someStr);
+    $("#feld").text(someStr);
   }
 
   showTimer(endTimePoint) {
@@ -85,20 +97,20 @@ class Someparent {
     let j = second;
     let k = third;
     $(document).ready(function () {
-      var f = document.getElementById('col2');
+      var f = document.getElementById("col2");
       setInterval(function () {
         if (i > 900) {
           return;
         } else {
-          f.style.display = f.style.display == 'none' ? '' : 'none';
+          f.style.display = f.style.display == "none" ? "" : "none";
           i++;
           j++;
           k++;
-          $('#col2').append(
+          $("#col2").append(
             `<p class="text-center bg-danger h4 text-white p-3">i = ${i} | j = ${j} | k = ${k}</p>`
           );
           setTimeout(function () {
-            $('#col2').empty();
+            $("#col2").empty();
           }, 350);
           console.log(f.text);
         }
@@ -117,13 +129,13 @@ class Someparent {
         } else {
           nndx1++;
           //   d.style.display = d.style.display == 'none' ? '' : 'none';
-          $('#col11').append(
+          $("#col11").append(
             `<p class="text-center round bg-success small text-white">result = ${nndx1}</p>`
           );
           console.log(nndx1);
         }
       }, 200);
-      console.log('nndx1');
+      console.log("nndx1");
     });
     const somePromise1 = await new Promise((resolve, reject) => {
       async function nestedPromise() {
@@ -131,7 +143,7 @@ class Someparent {
         let nndx23 = 0;
         if (nndx23 > theEnd1) {
           resolve();
-          console.log('resolved');
+          console.log("resolved");
         } else {
           //   d.style.display = d.style.display == 'none' ? '' : 'none';
           let nndx12 = 0;
@@ -143,13 +155,13 @@ class Someparent {
               } else {
                 nndx12++;
                 //   d.style.display = d.style.display == 'none' ? '' : 'none';
-                $('#col21').append(
+                $("#col21").append(
                   `<p class="text-center round bg-success small text-white">col21 = ${nndx12}</p>`
                 );
                 console.log(nndx12);
               }
             }, 800);
-            console.log('nndx12');
+            console.log("nndx12");
           });
           const somePromise22 = await new Promise((resolve, reject) => {
             setInterval(function () {
@@ -158,13 +170,13 @@ class Someparent {
               } else {
                 nndx22++;
                 //   d.style.display = d.style.display == 'none' ? '' : 'none';
-                $('#col22').append(
+                $("#col22").append(
                   `<p class="text-center round bg-success small text-white">col22 = ${nndx22}</p>`
                 );
                 console.log(nndx22);
               }
             }, 100);
-            console.log('nndx22');
+            console.log("nndx22");
           });
           const somePromise23 = await new Promise((resolve, reject) => {
             setInterval(function () {
@@ -173,7 +185,7 @@ class Someparent {
               } else {
                 nndx23++;
                 //   d.style.display = d.style.display == 'none' ? '' : 'none';
-                $('#col23').append(
+                $("#col23").append(
                   `<p class="text-center round bg-success small text-white">col23 = ${nndx23}</p>`
                 );
                 console.log(nndx23);
@@ -184,12 +196,12 @@ class Someparent {
           //     `<p class="text-center round bg-success small text-white">result = ${nndx2}</p>`
           //   );
           resolve();
-          console.log('resolve after the third nested nndx23');
+          console.log("resolve after the third nested nndx23");
           console.log(nndx23);
         }
       }
       nestedPromise();
-      console.log('nndx2');
+      console.log("nndx2");
     });
     const somePromise2 = await new Promise((resolve, reject) => {
       setInterval(function () {
@@ -198,13 +210,13 @@ class Someparent {
         } else {
           nndx3++;
           //   d.style.display = d.style.display == 'none' ? '' : 'none';
-          $('#col13').append(
+          $("#col13").append(
             `<p class="text-center round bg-success small text-white">result = ${nndx3}</p>`
           );
           console.log(nndx3);
         }
       }, 200);
-      console.log('nndx3');
+      console.log("nndx3");
     });
   }
 
@@ -222,13 +234,13 @@ class Someparent {
             ndx1++;
             let theEndHex1 = ndx1.toString(16);
             //   d.style.display = d.style.display == 'none' ? '' : 'none';
-            $('#col1').append(
+            $("#col1").append(
               `<p class="text-center round bg-success small text-white">Decimal = ${ndx1} | Hexadecimal = ${theEndHex1}</p>`
             );
             console.log(ndx1);
           }
         }, 200);
-        console.log('fi');
+        console.log("fi");
       });
       const promise2 = await new Promise((resolve, reject) => {
         setInterval(function () {
@@ -238,13 +250,13 @@ class Someparent {
             ndx2++;
             let theEndHex2 = ndx2.toString(16);
             //   d.style.display = d.style.display == 'none' ? '' : 'none';
-            $('#col2').append(
+            $("#col2").append(
               `<p class="text-center rounded table-info py-2 small text-info">Decimal = ${ndx2} | Hexadecimal = ${theEndHex2}</p>`
             );
             console.log(ndx2);
           }
         }, 600);
-        console.log('sec');
+        console.log("sec");
       });
       const promise3 = await new Promise((resolve, reject) => {
         setInterval(function () {
@@ -254,13 +266,13 @@ class Someparent {
             ndx3++;
             let theEndHex3 = ndx3.toString(16);
             //   d.style.display = d.style.display == 'none' ? '' : 'none';
-            $('#col3').append(
+            $("#col3").append(
               `<p class="text-center round table-danger small text-danger">Decimal = ${ndx3} | Hexadecimal = ${theEndHex3}</p>`
             );
             console.log(ndx3);
           }
         }, 200);
-        console.log('thir');
+        console.log("thir");
       });
       const resolvedPromises = await Promise.all([
         promise1,
