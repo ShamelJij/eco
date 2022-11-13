@@ -48,6 +48,11 @@ class myChartClass {
 
     const myChart = new Chart(document.getElementById("myChart"), config);
   }
+  async getSolar(){
+    let solarJSON = await requests.getSolar();
+    document.getElementById(solarBoard).value = solarJSON;
+  }
+
   showChart(chart) {
     $("#myChartDiv").append(chart);
   }
@@ -300,4 +305,3 @@ class SomeChildClass extends Someparent {
 //$("#feld").text("sometxt");
 let chartClass = new myChartClass();
 chartClass.showChart(chartClass.myChart);
-
