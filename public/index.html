@@ -1,49 +1,266 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>eco Solar</title>
+    <style>
+        /* input.form-control {
+            width: auto;
+        } */
+    </style>
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+</head>
 
-    <title>Practicing super and extends</title>
-  </head>
-  <body>
-    <h1 class="text-center text-info">Chart Test</h1>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light table-primary">
+        <i class="fa fa-solar-panel p-2 text-white" style="font-size:36px;">&nbsp;eco</i>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="costsPage" data-toggle="pill" href="#v-pills-home" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">Planung </a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                    aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
-      <div id="myChartDiv">
-        <canvas id="myChart"></canvas>
-      </div>
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="costsPage">
+                <div-2">
+                    <i class="far fa-clock font-weight-light"></i>
+                    <i id="clock"></i>
+                    <i id="test"></i>
+            </div>
+            <h2 class="text-center p-2 text-primary">Einsatzoptimierung Energie</h2>
+            <fieldset class="border p-2 mb-2">
+                <legend class="text-center" style="width:inherit; padding:0 10px; border-bottom:none;">
+                    <h4 class="text-center text-success">Planung:</h4>
+                </legend>
+                <div id="inputForm">
+                    <form>
+                        <div class="form-inline p-2">
+                            <div class="form-group col-md-4 offset-md-4 p-2">
+                                <label for="planerDateInput">Datum wählen:&nbsp;</label>
+                                <input type="date" class="form-control" id="planerDateInput" value="2022-10-01"
+                                    min="2022-10-01">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="table-responsive">
+                                <form class="form-horizontal">
+                                    <table class="table table-bordered table-striped table-highlight">
+                                        <thead class="table-success">
+                                            <th class="col-1">#</th>
+                                            <th class="col-2">Auswahl</th>
+                                            <th class="col-2">Variante</th>
+                                            <th class="col-1">Priorität/Start</th>
+                                            <th class="col-2">Bezeichnung</th>
+                                            <th class="col-2">d kW</th>
+                                            <th class="col-2">d Laufzeit</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <select class="form-control" value="ja">
+                                                        <option>ja</option>
+                                                        <option>nein</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" value="Wochentag">
+                                                        <option>Grunlast: Wochentag</option>
+                                                        <option>Brückentag</option>
+                                                        <option>Feiertag</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="time" class="form-control" value="09:00" /></td>
+                                                <td><input type="text" class="form-control" value="z.b. E-Auto">
+                                                </td>
+                                                <td><input type="number" class="form-control" step="0.01" value="0.0" />
+                                                </td>
+                                                <td><input class="form-control" id="duration-input" type="text" required
+                                                        pattern="[0-9]{2}:[0-9]{2}" value="00:00"
+                                                        title="bitte in ss:mm Format eingeben"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <select class="form-control" value="ja">
+                                                        <option>ja</option>
+                                                        <option>nein</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" value="Wochentag">
+                                                        <option>Programm1</option>
+                                                        <option>Programm2</option>
+                                                        <option>Programm2</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="time" class="form-control" value="09:00" /></td>
+                                                <td><input type="text" class="form-control" value="z.b. E-Auto">
+                                                </td>
+                                                <td><input type="number" class="form-control" step="0.01" value="0.0" />
+                                                </td>
+                                                <td><input class="form-control" id="duration-input" type="text" required
+                                                        pattern="[0-9]{2}:[0-9]{2}" value="00:00"
+                                                        title="bitte in ss:mm Format eingeben"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>
+                                                    <select class="form-control" value="ja">
+                                                        <option>ja</option>
+                                                        <option>nein</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" value="Wochentag">
+                                                        <option>Programm1</option>
+                                                        <option>Programm2</option>
+                                                        <option>Programm2</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="time" class="form-control" value="09:00" /></td>
+                                                <td><input type="text" class="form-control" value="z.b. E-Auto">
+                                                </td>
+                                                <td><input type="number" class="form-control" step="0.01" value="0.0" />
+                                                </td>
+                                                <td><input class="form-control" id="duration-input" type="text" required
+                                                        pattern="[0-9]{2}:[0-9]{2}" value="00:00"
+                                                        title="bitte in ss:mm Format eingeben"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <p>die Priorität Zeiten werden von Algorthmen berechnet und können ausnahmsweise
+                                    geändert. <br>
+                                    und wird l knopf berechnen
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+            <fieldset class="border p-2 mb-2">
+                <legend class="text-center" style="width:inherit; padding:0 10px; border-bottom:none;">
+                    <h4 class="text-center text-success">Ergebnis:</h4>
+                </legend>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-success">
+                            <tr>
+                                <th scope="col">Verbraucher</th>
+                                <th scope="col">Bezeichnung</th>
+                                <th scope="col">Variante</th>
+                                <th scope="col">d kW</th>
+                                <th scope="col">d Laufzeit</th>
+                                <th scope="col">Start</th>
+                                <th scope="col">End</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Grundlast</th>
+                                <td>ja</td>
+                                <td>Wochentag</td>
+                                <td>09:47</td>
+                                <td>E-Auto</td>
+                                <td>4,7</td>
+                                <td>03:42</td>
+                                <td>10:16</td>
+                                <td>13:58</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">V1</th>
+                                <td>ja</td>
+                                <td>Programm2</td>
+                                <td>09:47</td>
+                                <td>E-Auto</td>
+                                <td>4,7</td>
+                                <td>03:42</td>
+                                <td>10:16</td>
+                                <td>13:58</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">V2</th>
+                                <td>ja</td>
+                                <td>Programm3</td>
+                                <td>09:47</td>
+                                <td>E-Auto</td>
+                                <td>4,7</td>
+                                <td>03:42</td>
+                                <td>10:16</td>
+                                <td>13:58</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Summe:</td>
+                                <td class="text-primary">24</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>davon Solar:</td>
+                                <td class="text-primary">15</td>
+                                <td>Kosten</td>
+                                <td class="text-success">1,80 €</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Netz:</td>
+                                <td class="text-primary">9</td>
+                                <td>Kosten unten und oben</td>
+                                <td class="text-danger">3,78 €</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+        <div class="tab-pane fade" id="v-pills-solar" role="tabpanel" aria-labelledby="solarPage"></div>
+        <div class="tab-pane fade" id="v-pills-devices" role="tabpanel" aria-labelledby="devicesPage"></div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="settingsPage"></div>
     </div>
-
-
-    <!-- <h1 class="text-center text-info">super and extends practice</h1>
-    <p class="p-5 table-primary" id="feld"></p>
-    <div class="row table-warning p-1">
-      <div class="col-1" id="col11"></div>
-      <div class="col-10" id="col12">
-        <div class="row p-1">
-          <div class="col" id="col21"></div>
-        <div class="col" id="col22"></div>
-        <div class="col" id="col23"></div>
-      </div>
-      </div>
-      <div class="col-1" id="col13"></div>
     </div>
-    <div class="row p-1">
-      <div class="col-3" id="col1"></div>
-      <div class="col-6" id="col2"></div>
-      <div class="col-3" id="col3"></div>
-    </div> -->
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- JavaScript -->
     <script src="app.js"></script>
-  </body>
+</body>
+
 </html>
