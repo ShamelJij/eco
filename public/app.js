@@ -1,4 +1,5 @@
 import { Requests } from "./requests.js";
+let myRequests = new Requests();
 class myChartClass {
   constructor() {
     let labels = this.getHours();
@@ -48,7 +49,8 @@ class myChartClass {
 
     const myChart = new Chart(document.getElementById("myChart"), config);
   }
-  async getSolar(){
+  async getSolar() {
+    console.log("getSolar is pressed");
     let solarJSON = await requests.getSolar();
     document.getElementById(solarBoard).value = solarJSON;
   }
@@ -305,3 +307,6 @@ class SomeChildClass extends Someparent {
 //$("#feld").text("sometxt");
 let chartClass = new myChartClass();
 chartClass.showChart(chartClass.myChart);
+document
+  .getElementById("showSolar")
+  .addEventListener("click", myRequests.getSolar());
