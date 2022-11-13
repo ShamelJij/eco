@@ -1,4 +1,4 @@
-export class requests{
+export class Requests {
   //################################################################################
   /**
    * @param {string} method POST/PUT/DELETE/GET
@@ -8,7 +8,7 @@ export class requests{
     let promise = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
       xhr.open(method, url);
-      xhr.responseType = 'json';
+      xhr.responseType = "json";
       xhr.onload = function () {
         if (xhr.status != 200) {
           // analyze HTTP status of the response
@@ -30,6 +30,6 @@ export class requests{
    * @return {Array.<Objects>}
    */
   async getSolar() {
-    return this.sendHTTPRequest('GET', 'http://localhost:8080/solar/');
+    return this.sendHTTPRequest("GET", "http://localhost:8080/solar/");
   }
-  }
+}

@@ -1,4 +1,4 @@
-import { requests } from "./requests.js";
+import { Requests } from "./requests.js";
 class myChartClass {
   constructor() {
     let labels = this.getHours();
