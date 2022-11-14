@@ -1,0 +1,20 @@
+services:
+  frontend:
+    image: eco-ui:0.0.3
+    container_name: ui
+    ports:
+      - "80:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  backend:
+    image: eco-server:0.0.3
+    container_name: server
+    networks:
+      - back-tier
+
+networks:
+  # The presence of these objects is sufficient to define them
+  front-tier: {}
+  back-tier: {}

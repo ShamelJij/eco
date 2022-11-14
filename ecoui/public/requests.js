@@ -30,6 +30,6 @@ export class Requests {
    * @return {Array.<Objects>}
    */
   async getSolar() {
-    return this.sendHTTPRequest("GET", "http://localhost:8080/solar/");
+    return this.sendHTTPRequest("GET", "/solar");
   }
 }
