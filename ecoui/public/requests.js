@@ -1,8 +1,7 @@
 export class Requests {
-  //################################################################################
   /**
    * @param {string} method POST/PUT/DELETE/GET
-   * @param {string} url
+   * @param {string} url https://example.com/user/list
    */
   sendHTTPRequest(method, url) {
     let promise = new Promise((resolve, reject) => {
@@ -24,9 +23,8 @@ export class Requests {
     return promise;
   }
 
-  //--------------------------------------------------------------------------------
   /**
-   * GET /inventories or /persons or /locations
+   * GET /json file
    * @return {Array.<Objects>}
    */
   async getSolar() {
