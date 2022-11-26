@@ -62,7 +62,7 @@ export class Requests {
   put(putObj, id) {
     let xhr = new XMLHttpRequest();
     let jsonPutObj = JSON.stringify(putObj);
-    xhr.open("PUT", "http://localhost:8080/v1/" + this.db + "/" + id, true);
+    xhr.open("PUT", "/addDevice");
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPutObj);
 
@@ -107,7 +107,7 @@ export class Requests {
    * @return {Array.<Objects>}
    */
   async getAll() {
-    return this.sendHTTPRequest("GET", "http://localhost:8080/v1/" + this.db);
+    return this.sendHTTPRequest("GET", "http://localhost:8080/devices");
   }
 
   /**
@@ -118,7 +118,7 @@ export class Requests {
   async getById(id) {
     return this.sendHTTPRequest(
       "GET",
-      "http://localhost:8080/v1/" + this.db + "/" + id
+      "http://localhost:8080/get/"+ id
     );
   }
 }

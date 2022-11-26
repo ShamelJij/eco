@@ -52,7 +52,8 @@ export class Events {
     console.log("updateDeviceBtn");
   }
   saveDeviceBtn() {
-    console.log("saveDeviceBtn");
+
+    myRequests.put(JSON.parse("{\"name\":\"Device 1\"}"), "device1");
   }
   deviceCancelUpdateBtn() {
     console.log("deviceCancelUpdateBtn");
