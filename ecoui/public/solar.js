@@ -36,7 +36,6 @@ export class ChartClass {
             beginAtZero: true,
             ticks: {
               callback: (value, index, values) => {
-                console.log(values);
                 return `${value} kWh`;
               },
             },

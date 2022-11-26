@@ -16,6 +16,7 @@ export class Requests {
           // show the result
           console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
           resolve(xhr.response);
+          console.log(JSON.stringify(xhr.response.data[2]));
         }
       };
       xhr.send();
@@ -28,6 +29,6 @@ export class Requests {
    * @return {Array.<Objects>}
    */
   async getSolar() {
-    return this.sendHTTPRequest("GET", "/solar");
+    return this.sendHTTPRequest("GET", "https://reqres.in/api/users");
   }
 }

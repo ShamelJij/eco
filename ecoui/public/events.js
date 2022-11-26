@@ -1,3 +1,5 @@
+import { Requests } from "./requests.js";
+let myRequests = new Requests();
 export class Events {
   clickIds = ["showSolar"];
 
@@ -7,7 +9,6 @@ export class Events {
    * @param {string} eventName "click", "change", "scroll"
    */
   assignEvents(eventIds, sliceLength, eventName) {
-    let eventInputElements = {};
     for (let i = 0; i < eventIds.length; i++) {
       let eventFunction = "";
       // -- if slice == 0 then there will be no change
@@ -16,15 +17,16 @@ export class Events {
       } else {
         eventFunction = eventIds[i].slice(0, -sliceLength);
       }
-      eventInputElements[eventIds[i]] = eval(
-        "document.getElementById(" + eventIds[i] + ");"
-      );
       document
         .getElementById(eventIds[i])
         .addEventListener(eventName, eval("this." + eventFunction), false);
     }
   }
   showSolar() {
-    console.log("something");
+    document.getElementById("inputForm").className = "d-block";
+    // console.log(myRequests.getSolar());
+    // document.getElementById("responseObject").innerText = JSON.stringify(
+    //   myRequests.getSolar().response
+    // );
   }
 }
