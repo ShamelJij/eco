@@ -11,7 +11,27 @@ let myGetRequest = new CustomListener();
 let WallOClock = new MyTime();
 myEvents.assignEvents(0, "click");
 chartClass.showChart(chartClass.myChart);
-
+/**
+ * get input from form as an object
+ *
+ * @return {deviceData}
+ */
+function getInputDevice() {
+  let deviceForm = ["deviceLabel", "deviceSerialNumber", "deviceType"];
+  let deviceData = {};
+  for (let i = 0; i < inventoryForm.length; i++) {
+    if (
+      deviceData[deviceForm[i]] === "inventoryPriceInpt" ||
+      deviceData[deviceForm[i]] === "inventoryDepreciationInput"
+    ) {
+      deviceData[deviceForm[i]] = parseInt(
+        document.getElementById(deviceForm[i]).value
+      );
+    }
+    deviceData[deviceForm[i]] = document.getElementById(deviceForm[i]).value;
+  }
+  return deviceData;
+}
 //this will show time on the planing page
 window.addEventListener("load", function () {
   this.setInterval(function () {
