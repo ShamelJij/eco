@@ -13,13 +13,13 @@ export class ChartClass {
       labels: labels,
       datasets: [
         {
-          label: "My First dataset",
+          label: "Solar",
           backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
           data: [0, 30, ...d1, 300],
         },
         {
-          label: "My second dataset",
+          label: "Some device",
           backgroundColor: "rgb(255, 165, 0)",
           borderColor: "rgb(255, 165, 0)",
           data: [0, 20, ...d2, 300],
@@ -31,6 +31,9 @@ export class ChartClass {
       type: "line",
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 2 | 2,
         scales: {
           y: {
             beginAtZero: true,
