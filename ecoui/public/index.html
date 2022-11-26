@@ -11,12 +11,6 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Chart.js cdn -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <style>
-        #canvas {
-            border: solid 1px blue;
-            width: 100%;
-        }
-    </style> -->
     <title>eco</title>
 </head>
 
@@ -272,7 +266,7 @@
                 </div>
             </div>
             <!-- end of PLANNER PAGE -->
-            <!-- SETTINGS page -->
+            <!-- Device Management page -->
             <div class="tab-pane fade" id="v-pills-Geraeteverwaltung" role="tabpanel"
                 aria-labelledby="deviceManagementPage">
                 <div class="row m-2">
@@ -280,7 +274,7 @@
                         <div class="container text-center mb-3">
                             <h1>Geräteverwaltung</h1>
                         </div>
-                        <div class="form-row justify-content-center" id="newInventoryBtn">
+                        <div class="form-row justify-content-center" id="newDeviceBtn">
                             <button class="btn btn-primary mb-4" type="button" id="showDeviceManagementBtn">Neues
                                 Geräte</button>
                         </div>
@@ -291,199 +285,62 @@
                         </div>
                         <div class="d-block" id="showDeviceTable">
                             <form class="needs-validation" novalidate>
-                                <!-- <div class="form-row">
-                                    <div class="col-md-6">
-                                        <fieldset
-                                            class="form-group border p-3 d-flex justify-content-around text-center bg-light">
-                                            <legend class=" px-2 h3 text-info">Person</legend>
-                                            <button type="button" id="inventorySelectPersonBtn" class="btn btn-info"
-                                                data-toggle="modal" data-target="#showAddPerson" href="#">Person
-                                                auswählen</button>&nbsp; &nbsp;
-                                            <button type="button" class="btn btn-info" id="inventoryNewPersonBtn"
-                                                href="#">neue
-                                                Person</button>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset
-                                            class="form-group border p-3 d-flex justify-content-around text-center bg-light">
-                                            <legend class=" px-2 h3 text-info"><i class="fa fa-map-marker"
-                                                    style="font-size:24px"></i>&nbsp;&nbsp;Standort </legend>
-                                            <button type="button" id="inventorySelectLocationBtn" class="btn btn-info"
-                                                data-toggle="modal" data-target="#showAddLocation" href="#">Ort
-                                                auswählen</button>&nbsp;&nbsp;
-                                            <button class="btn btn-info" type="button"
-                                                id="inventoryNewLocationBtn">neuer
-                                                Standort</button>
-                                        </fieldset>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-row">
-                                    <div class="col-md-6">
-                                        <p>PersonID: <span id="personIDInventar"></span></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>LocationID: <span id="locationIDInventar"></span></p>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-row">
-                                    <div class="col-md-6">
-                                        <label for="inventoryStatus">Status</label>
-                                        <select class="form-control" type="text" readonly name="inventoryStatus"
-                                            id="inventoryStatus" onchange="refreshInventory()">
-                                            <option value="Aktiv">Aktiv</option>
-                                            <option value="Ausgebucht">Ausgebucht</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="edited">zuletzt bearbeitet</label>
-                                        <input class="form-control" type="text" readonly name="editedName" id="edited"
-                                            value="10.01.2021">
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-row" id="formEndDate">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="idDeprecationDate">Datum abgebucht</label>
-                                        <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01"
-                                            required>
-                                        <div class="valid-feedback">
-                                            Danke!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Bitte Datum eingeben!
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="form-row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="inventoryLabel">Bezeichnung</label>
-                                        <input type="text" class="form-control" placeholder="z.B. Dell - Apple - Asus"
-                                            id="inventoryLabel" required>
-                                        <div class="valid-feedback" id="inventoryLabelIsValid">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="deviceLabel">Bezeichnung</label>
+                                        <input type="text" class="form-control"
+                                            placeholder="z.B. Markus Auto - Lisa Auto" id="deviceLabel" required>
+                                        <div class="valid-feedback" id="deviceLabelIsValid">
                                             Danke!
                                         </div>
-                                        <div class="invalid-feedback" id="inventoryLabelIsInvalid">
+                                        <div class="invalid-feedback" id="deviceLabelIsInvalid">
                                             Bitte füllen Sie das Feld aus.
                                         </div>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="inventorySerialNumber">Seriennummer</label>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="deviceSerialNumber">Seriennummer</label>
                                         <input type="text" class="form-control" name="serialNumber"
-                                            placeholder="die Gerätenummer auf dem Typenschild"
-                                            id="inventorySerialNumber" required>
-                                        <div class="valid-feedback" id="inventorySerialNumberIsValid">
+                                            placeholder="1232fmjk sn" id="deviceSerialNumber" required>
+                                        <div class="valid-feedback" id="deviceSerialNumberIsValid">
                                             die Eingabe sind gültig
                                         </div>
-                                        <div class="invalid-feedback" id="inventorySerialNumberIsInValid">
+                                        <div class="invalid-feedback" id="deviceSerialNumberIsInValid">
                                             die eingabe muss eindeutig sein!
                                         </div>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="inventoryType">Typ</label>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="deviceType">Typ</label>
                                         <input type="text" class="form-control"
-                                            placeholder="z.B. Laptop - Maus - Monitor" id="inventoryType" required>
-                                        <div class="valid-feedback" id="inventoryTypeIsValid">
+                                            placeholder="z.B. Auto - Fahrrad - Speicher" id="deviceType" required>
+                                        <div class="valid-feedback" id="deviceTypeIsValid">
                                             Danke!
                                         </div>
-                                        <div class="invalid-feedback" id="inventoryTypeIsInValid">
+                                        <div class="invalid-feedback" id="deviceTypeIsInValid">
                                             Bitte füllen Sie das Feld aus.
                                         </div>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="inventoryPurchaseDateChg">Anschaffungsdatum</label>
-                                        <input type="date" class="form-control" onchange="dateChangeHandler(event);"
-                                            name="purchaseDate" id="inventoryPurchaseDateChg" min="2018-01-01" required>
-                                        <div class="invalid-feedback" id="inventoryPurchaseDateInvalid">
-                                            Bitte ein Datum eingeben.
-                                        </div>
-                                        <div class="valid-feedback" id="inventoryPurchaseDateValid">
-                                            Danke!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <!-- <div class="col-md-3 mb-3">
-                                        <label for="inventoryPrice" class="h5">Preis&nbsp;&nbsp;<span
-                                                class="text-white bg-success">&nbsp;netto&nbsp;</span></label>
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" id="inventoryPriceInpt" value="0">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text text-white bg-success"
-                                                    id="inputGroupAppendType">&#128;
-                                                </span>
-                                            </div>
-                                            <div class="valid-feedback" id="inventoryPriceValid">
-                                            </div>
-                                            <div class="invalid-feedback" id="inventoryPriceNotValid">
-                                                negatives Wert ist nicht gültig
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-md-3 mt-4 text-center">
-                                        <button class="btn btn-primary" type="button" id="calculate">berechnen
-                                        </button>
-                                    </div>
-                                    <!-- <div class="col-md-3 mb-3">
-                                        <label for="inventoryBookingCategory">Abschreibskategorie</label>
-                                        <input class="form-control" type="text" readonly name="editedName"
-                                            id="inventoryBookingCategory" value="GWG">
-                                    </div> -->
-                                </div>
-                                <!-- <div class="form-row" id="rowDepreciation">
-                                    <div class="col-md-3 offset-md-6">
-                                        <div class="col-md-3 mb-3" id="inventoryDepreciationGroup">
-                                            <label for="inventoryDepreciationInput">Abschreibzeitraum</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" name="depreciationInput"
-                                                    id="inventoryDepreciationInput" required>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">Monate</span>
-                                                </div>
-                                                <div class="valid-feedback" id="inventoryDepreciationInputIsValid">
-                                                    Danke!
-                                                </div>
-                                                <div class="invalid-feedback" id="inventoryDepreciationInputIsInValid">
-                                                    Bitte Datum eingeben!
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="col-md-3 mb-3" id="inventoryValidationEndDateGroup">
-                                            <label for="inventoryValidationEndDate">Abgeschrieben am:</label>
-                                            <input type="date" class="form-control" id="inventoryValidationEndDate"
-                                                min="2018-01-01" readonly>
-                                            <div class="valid-feedback">
-                                                Danke!
-                                            </div>
-                                            <div class="invalid-feedback">
-                                                Bitte Datum eingeben!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="d-block">
-                                    <input type="text" id="inventoryId">
                                 </div>
                                 <div class="d-block">
-                                    <input type="text" id="inventoryHiddenCategory">
+                                    <input type="text" id="deviceId">
                                 </div>
                                 <div class="d-block">
-                                    <input type="text" id="inventoryRevisionId">
+                                    <input type="text" id="deviceHiddenCategory">
                                 </div>
                                 <div class="d-block">
-                                    <input type="text" id="personIdInInventory">
+                                    <input type="text" id="deviceRevisionId">
+                                </div>
+                                <div class="d-block">
+                                    <input type="text" id="deviceForeignKey">
                                 </div>
                                 <div class="form-group col-12 text-center my-3">
                                     <form class="submit-form">
-                                        <button class="btn btn-success" type="button" id="updateInventoryBtn">
+                                        <button class="btn btn-success" type="button" id="updateDeviceBtn">
                                             Aktualisieren
                                         </button>
-                                        <button class="btn btn-primary" type="button" id="saveInventoryBtn">
+                                        <button class="btn btn-primary" type="button" id="saveDeviceBtn">
                                             Speichern
                                         </button>
-                                        <button class="btn btn-primary" type="button" onclick="hideInventory()"
-                                            id="inventoryCancelUpdateBtn">
+                                        <button class="btn btn-primary" type="button" id="deviceCancelUpdateBtn">
                                             Abrechen
                                         </button>
                                     </form>
@@ -491,13 +348,12 @@
                             </form>
                         </div>
                         <div class="container-fluid">
-                            <div class="form-group col-md-auto alert alert-danger text-center d-none"
-                                id="inventoryDelete" role="alert">
-                                <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong
-                                        id="inventoryDeletedName"></strong> ist gelöcht</p>
+                            <div class="form-group col-md-auto alert alert-danger text-center d-none" id="deviceDelete"
+                                role="alert">
+                                <p><strong id="deviceDeletedName"></strong> ist gelöcht</p>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped text-center" id="inventoryTable">
+                                <table class="table table-striped text-center" id="deviceTable">
                                     <thead class="table-primary">
                                         <tr>
                                             <th>Bezeichnung</th>
@@ -508,13 +364,13 @@
                                             <th> -</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="inventoryTableBody">
+                                    <tbody id="deviceTableBody">
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="mt-3 d-flex justify-content-center">
-                            <div class="form-group col-6 alert alert-danger text-center" id="inventoryTableIsEmpty"
+                            <div class="form-group col-6 alert alert-danger text-center" id="deviceTableIsEmpty"
                                 role="alert">
                                 <p>Table ist noch leer</p>
                             </div>
@@ -527,15 +383,15 @@
                                     <h6>Geräte</h6>
                                 </div>
                                 <div>
-                                    <h6><span id="personCount" class="badge badge-info"></span></h6>
+                                    <h6><span id="deviceCount" class="badge badge-info"></span></h6>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6>Gesamtes Geräte</h6>
+                                    <h6>Speicher</h6>
                                 </div>
                                 <div>
-                                    <h6><span id="inventoryCount" class="badge badge-info"></span></h6>
+                                    <h6><span id="batteriesCount" class="badge badge-info"></span></h6>
                                 </div>
                             </li>
                         </ul>
@@ -543,7 +399,7 @@
                 </div>
             </div>
         </div>
-        <!-- end of SETTINGS page -->
+        <!-- end of Device Management page -->
         <!-- SETTINGS page -->
         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="settingsPage">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sit explicabo. Autem iste fugiat
@@ -572,6 +428,7 @@
         crossorigin="anonymous"></script>
     <!-- my JavaScript -->
     <script type="module" src="app.js"></script>
+
 </body>
 
 </html>

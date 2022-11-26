@@ -1,4 +1,4 @@
-export class Customlistener {
+export class CustomListener {
   timerval = 0;
   myFirstRequest() {
     console.log("this is getRequest number: " + this.timerval);
