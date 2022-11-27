@@ -11,7 +11,32 @@ let myGetRequest = new CustomListener();
 let WallOClock = new MyTime();
 myEvents.assignEvents(0, "click");
 chartClass.showChart(chartClass.myChart);
-
+/**
+ * get input from form as an object
+ *
+ * @return {deviceData}
+ */
+function getInputDevice() {
+  let deviceForm = ["deviceLabel", "deviceSerialNumber", "deviceType"];
+  let deviceData = {};
+  for (let i = 0; i < inventoryForm.length; i++) {
+    deviceData[deviceForm[i]] = document.getElementById(deviceForm[i]).value;
+  }
+  return deviceData;
+}
+let objArray;
+function t() {
+  async () => {
+    const a = await myRequests.getSolar();
+    console.log(a.data);
+    this.objArray = JSON.stringify(a.data);
+    return a.data;
+  };
+}
+console.log(t());
+document
+  .getElementById("showExampleTable")
+  .addEventListener("click", myEvents.showExampleTable());
 //this will show time on the planing page
 window.addEventListener("load", function () {
   this.setInterval(function () {
@@ -24,7 +49,8 @@ myGetRequest.myFirstRequest();
 window.addEventListener(
   "load",
   function () {
-    this.setInterval(myGetRequest.myGetRequest, 1000);
+    //very important example of bind to not lose (this) context
+    this.setInterval(myGetRequest.myGetRequest.bind(myGetRequest), 1000);
   },
   false
 );
