@@ -1,5 +1,5 @@
 export class CustomListener {
-  timerval = 0;
+  timerval = 1;
   myFirstRequest() {
     console.log("this is getRequest number: " + this.timerval);
   }
@@ -13,7 +13,8 @@ export class CustomListener {
       (minutes == "30" && seconds == "00") ||
       (minutes == "45" && seconds == "00")
     ) {
-      this.timerval = ++this.timerval;
+      ++this.timerval;
+      console.log("this is getRequest number: " + this.timerval);
       return;
     } else {
       return;

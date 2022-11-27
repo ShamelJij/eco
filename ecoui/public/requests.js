@@ -16,7 +16,7 @@ export class Requests {
           // show the result
           console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
           resolve(xhr.response);
-          console.log(JSON.stringify(xhr.response.data[2]));
+          // console.log(JSON.stringify(xhr.response.data));
         }
       };
       xhr.send();
@@ -40,7 +40,7 @@ export class Requests {
   post(postObj) {
     let xhr = new XMLHttpRequest();
     let jsonPostObj = JSON.stringify(postObj);
-    xhr.open("POST", "http://localhost:8080/v1/" + this.db + "/", true);
+    xhr.open("POST", "http://localhost:8080/" + id);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPostObj);
 
@@ -62,7 +62,7 @@ export class Requests {
   put(putObj, id) {
     let xhr = new XMLHttpRequest();
     let jsonPutObj = JSON.stringify(putObj);
-    xhr.open("PUT", "http://localhost:8080/v1/" + this.db + "/" + id, true);
+    xhr.open("PUT", "http://localhost:8080/" + id);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPutObj);
 
@@ -87,7 +87,7 @@ export class Requests {
    */
   del(id) {
     let xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://localhost:8080/v1/" + this.db + "/" + id, true);
+    xhr.open("DELETE", "http://localhost:8080/" + id);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send();
 
@@ -107,7 +107,7 @@ export class Requests {
    * @return {Array.<Objects>}
    */
   async getAll() {
-    return this.sendHTTPRequest("GET", "http://localhost:8080/v1/" + this.db);
+    return this.sendHTTPRequest("GET", "http://localhost:8080/");
   }
 
   /**
@@ -116,9 +116,6 @@ export class Requests {
    * @return {string} JSON
    */
   async getById(id) {
-    return this.sendHTTPRequest(
-      "GET",
-      "http://localhost:8080/v1/" + this.db + "/" + id
-    );
+    return this.sendHTTPRequest("GET", "http://localhost:8080/" + id);
   }
 }

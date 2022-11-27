@@ -20,14 +20,6 @@ function getInputDevice() {
   let deviceForm = ["deviceLabel", "deviceSerialNumber", "deviceType"];
   let deviceData = {};
   for (let i = 0; i < inventoryForm.length; i++) {
-    if (
-      deviceData[deviceForm[i]] === "inventoryPriceInpt" ||
-      deviceData[deviceForm[i]] === "inventoryDepreciationInput"
-    ) {
-      deviceData[deviceForm[i]] = parseInt(
-        document.getElementById(deviceForm[i]).value
-      );
-    }
     deviceData[deviceForm[i]] = document.getElementById(deviceForm[i]).value;
   }
   return deviceData;
@@ -44,7 +36,8 @@ myGetRequest.myFirstRequest();
 window.addEventListener(
   "load",
   function () {
-    this.setInterval(myGetRequest.myGetRequest, 1000);
+    //very important example of bind to not lose (this) context
+    this.setInterval(myGetRequest.myGetRequest.bind(myGetRequest), 1000);
   },
   false
 );

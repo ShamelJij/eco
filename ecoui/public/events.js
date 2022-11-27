@@ -9,6 +9,7 @@ export class Events {
     "updateDeviceBtn",
     "saveDeviceBtn",
     "deviceCancelUpdateBtn",
+    "addDevices",
   ];
 
   /**
@@ -40,10 +41,14 @@ export class Events {
   }
   showSolar() {
     // document.getElementById("inputForm").className = "d-block";
-    console.log(myRequests.getSolar());
-    document.getElementById("responseObject").innerText = JSON.stringify(
-      myRequests.getSolar().response
-    );
+    const d = async () => {
+      const a = await myRequests.getSolar();
+      console.log(a.data);
+      document.getElementById("responseObject").innerText = JSON.stringify(
+        a.data
+      );
+    };
+    d();
   }
   showDeviceManagementBtn() {
     console.log("showDeviceManagementBtn");
@@ -56,5 +61,8 @@ export class Events {
   }
   deviceCancelUpdateBtn() {
     console.log("deviceCancelUpdateBtn");
+  }
+  addDevices() {
+    console.log("addDevices (get all devices)");
   }
 }
