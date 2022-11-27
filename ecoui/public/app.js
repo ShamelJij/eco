@@ -24,6 +24,19 @@ function getInputDevice() {
   }
   return deviceData;
 }
+let objArray;
+function t() {
+  async () => {
+    const a = await myRequests.getSolar();
+    console.log(a.data);
+    this.objArray = JSON.stringify(a.data);
+    return a.data;
+  };
+}
+console.log(t());
+document
+  .getElementById("showExampleTable")
+  .addEventListener("click", myEvents.showExampleTable());
 //this will show time on the planing page
 window.addEventListener("load", function () {
   this.setInterval(function () {
