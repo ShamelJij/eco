@@ -43,7 +43,6 @@ export class Events {
   }
   //this function is yet to be implemented
   showSolar() {
-    // document.getElementById("inputForm").className = "d-block";
     const d = async () => {
       const a = await myRequests.getSolar();
       console.log(a.data);
@@ -59,39 +58,54 @@ export class Events {
   editItem() {
     console.log("edit item");
   }
+
   //example for showing a table from JSON
   /*
    *  getting an Object array - Object[] from getRequest
    *  @param {<Array>}
    */
 
-  showExampleTable(objArray) {
-    console.log("showExampleTable");
-    document.getElementById("exampleTable").className = "d-block m-2";
+  async showExampleTable() {
+    let objArray = {};
+    const d = async () => {
+      const a = await myRequests.getSolar();
+      return a.data;
+    };
+    objArray = await d();
+    console.log(objArray);
+    document.getElementById("exampleTable").className =
+      "d-block m-2 table table-bordered table-striped table-highlight";
+    document.getElementById("tableDiv").className = "d-block";
     // document.getElementById("exampleTable").className = "d-block m-2";
-    let obj = {};
-    let objKeys = [];
     let tableBody = document.getElementById("exampleTableBody");
-    let cells = [];
-    let newRow = tableBody.insertRow(tableBody.length);
+    let obj = {};
     for (let i = 0; i < objArray.length; i++) {
+      let newRow = tableBody.insertRow(tableBody.length);
       obj = objArray[i];
-      objKeys = Object.keys(obj);
-      for (let j = 0; j < objKeys.length - 1; j++) {
-        cells[j] = newRow.insertCell(i);
-        cells[j].innerHTML = eval("obj." + objKeys[j]);
-      }
-      cells[objKeys.length] = newRow.insertCell(objKeys.length);
+      console.log(newRow);
+      let cell1 = newRow.insertCell(0);
+      cell1.innerText = obj.id;
+      let cell2 = newRow.insertCell(1);
+      cell2.innerText = obj.first_name;
+      let cell3 = newRow.insertCell(2);
+      cell3.innerText = obj.last_name;
+      let cell4 = newRow.insertCell(3);
+      cell4.innerText = obj.email;
       const lastCell = document.createElement("div");
-      lastCell.className = "text-center d-flex justify-content-around";
+      lastCell.className = "text-center row";
       const editBtn = document.createElement("button");
-      editBtn.className = "btn btn-success";
-      editBtn.innerText = "E";
+      editBtn.className = "btn btn-success col-2 mx-2";
+      editBtn.innerHTML = "E";
       editBtn.addEventListener("click", this.editItem);
       const deleteBtn = document.createElement("button");
-      deleteBtn.classList = "btn btn-danger";
-      deleteBtn.innerText = "D";
+      deleteBtn.classList = "btn btn-danger col-2 mx-2";
+      deleteBtn.innerHTML = "D";
       deleteBtn.addEventListener("click", this.deleteItem);
+      lastCell.appendChild(editBtn);
+      lastCell.appendChild(deleteBtn);
+      console.log(lastCell);
+      let cell5 = newRow.insertCell(4);
+      cell5.innerHTML = lastCell.innerHTML;
     }
   }
   //these are the btn click listener

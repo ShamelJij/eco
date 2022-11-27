@@ -51,26 +51,18 @@
                 <div class="text-center my-2"><button class="btn btn-primary"
                         id="showExampleTable">showExampleTable</button>
                 </div>
-                <div id="exampleTable" class="d-none">
+                <div id="tableDiv" class="d-none">
                     <div class="table-responsive">
                         <form class="form-horizontal">
-                            <table class="table table-bordered table-striped table-highlight">
+                            <table id="exampleTable" class="table table-bordered table-striped table-highlight">
                                 <thead class="table-success">
-                                    <th class="col-2">#</th>
-                                    <th class="col-3">First Name</th>
-                                    <th class="col-3">Last Name</th>
-                                    <th class="col-3">Email</th>
+                                    <th class="col-1">#</th>
+                                    <th class="col-2">First Name</th>
+                                    <th class="col-2">Last Name</th>
+                                    <th class="col-2">Email</th>
+                                    <th class="col-5">-</th>
                                 </thead>
                                 <tbody id="exampleTableBody">
-                                    <tr>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </form>
@@ -411,7 +403,7 @@
                                             <th>Typ</th>
                                             <th>d kW</th>
                                             <th>d Laufzeit</th>
-                                            <th> -</th>
+                                            <th>-</th>
                                         </tr>
                                     </thead>
                                     <tbody id="deviceTableBody">
