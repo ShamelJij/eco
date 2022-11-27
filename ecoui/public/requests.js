@@ -60,6 +60,7 @@ export class Requests {
    * @param {string} id
    */
   put(putObj, id) {
+    console.log(putObj);
     let xhr = new XMLHttpRequest();
     let jsonPutObj = JSON.stringify(putObj);
     xhr.open("PUT", "/addDevice");

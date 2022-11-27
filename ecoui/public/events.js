@@ -53,6 +53,9 @@ export class Events {
   }
   saveDeviceBtn() {
 
+    let deviceName = document.getElementById('deviceLabel').value;
+    console.log(deviceName);
+
     myRequests.put(JSON.parse("{\"name\":\"Device 1\"}"), "device1");
   }
   deviceCancelUpdateBtn() {

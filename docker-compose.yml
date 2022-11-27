@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: eco-ui:0.0.3
+    image: eco-ui:0.0.1
     container_name: ui
     ports:
       - "80:80"
