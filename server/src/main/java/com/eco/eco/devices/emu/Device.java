@@ -17,6 +17,15 @@ public class Device {
     private String name;
     private Double avgConsumption;
     private Double avgDuration;
+    private boolean deleted;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public Integer getId() {
         return id;
@@ -57,4 +66,5 @@ public class Device {
     public void setAvgDuration(Double avgDuration) {
         this.avgDuration = avgDuration;
     }
+
 }

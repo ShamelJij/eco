@@ -1,12 +1,9 @@
-import { Requests } from "./requests.js";
-let myRequests = new Requests();
 export class Events {
   globalInventoryId = 0;
 
   clickIds = [
     "showSolar",
     "showDeviceManagementBtn",
-    "updateDeviceBtn",
     "saveDeviceBtn",
     "deviceCancelUpdateBtn",
     "addDevices",
@@ -44,7 +41,7 @@ export class Events {
   //this function is yet to be implemented
   showSolar() {
     const d = async () => {
-      const a = await myRequests.getSolar();
+      const a = getSolar();
       console.log(a.data);
       document.getElementById("responseObject").innerText = JSON.stringify(
         a.data
@@ -68,7 +65,7 @@ export class Events {
   async showExampleTable() {
     let objArray = {};
     const d = async () => {
-      const a = await myRequests.getSolar();
+      const a = getSolar();
       return a.data;
     };
     objArray = await d();
@@ -110,23 +107,26 @@ export class Events {
   }
   //these are the btn click listener
   showDeviceManagementBtn() {
-    console.log("showDeviceManagementBtn");
-  }
-
-  updateDeviceBtn() {
-    console.log("updateDeviceBtn");
+    var x = document.getElementById("showDeviceTable");
+    x.style.display = "block";
   }
 
   saveDeviceBtn() {
-
-    let deviceName = document.getElementById('deviceLabel').value;
-    console.log(deviceName);
-
-    myRequests.put(JSON.parse("{\"name\":\"Device 1\"}"), "device1");
+    let deviceName = document.getElementById('deviceName').value;
+    let deviceId = document.getElementById('deviceId').value;
+    let avgConsumption = document.getElementById('avgConsumption').value;
+    let avgDuration = document.getElementById('avgDuration').value;
+    let deviceString = "{\"deviceId\":\"" + deviceId + "\","
+                       + "\"name\":\"" + deviceName + "\","
+                       + "\"avgConsumption\":\"" + avgConsumption + "\","
+                       + "\"avgDuration\":\"" + avgDuration + "\"}";
+    addDevice(JSON.parse(deviceString)).then(
+    updateDevicesTable());
   }
 
   deviceCancelUpdateBtn() {
-    console.log("deviceCancelUpdateBtn");
+    var x = document.getElementById("showDeviceTable");
+    x.style.display = "none";
   }
 
   addDevices() {

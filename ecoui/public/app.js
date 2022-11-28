@@ -1,16 +1,14 @@
 import { Events } from "./events.js";
-import { Requests } from "./requests.js";
-import { ChartClass } from "./solar.js";
+// import { ChartClass } from "./solar.js";
 import { CustomListener } from "./customListener.js";
 import { MyTime } from "./myTime.js";
 import { InitPage } from "./initPage.js";
-let myRequests = new Requests();
 let myEvents = new Events();
-let chartClass = new ChartClass();
+// let chartClass = new ChartClass();
 let myGetRequest = new CustomListener();
 let WallOClock = new MyTime();
 myEvents.assignEvents(0, "click");
-chartClass.showChart(chartClass.myChart);
+// chartClass.showChart(chartClass.myChart);
 /**
  * get input from form as an object
  *
@@ -24,6 +22,9 @@ function getInputDevice() {
   }
   return deviceData;
 }
+
+
+
 let objArray;
 document
   .getElementById("showExampleTable")
@@ -42,6 +43,7 @@ window.addEventListener(
   function () {
     //very important example of bind to not lose (this) context
     this.setInterval(myGetRequest.myGetRequest.bind(myGetRequest), 1000);
+    updateDevicesTable();
   },
   false
 );

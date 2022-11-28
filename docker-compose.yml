@@ -1,24 +1,24 @@
 services:
-  frontend:
-    image: eco-ui:0.0.1
-    container_name: ui
-    ports:
-      - "80:80"
-    networks:
-      - front-tier
-      - back-tier
-
-  backend:
-    image: eco-server:0.0.3
-    container_name: server
-    networks:
-      - back-tier
+#  frontend:
+#    image: eco-ui:0.0.5
+#    container_name: ui
+#    ports:
+#      - "80:80"
+#    networks:
+#      - front-tier
+#      - back-tier
+#
+#  backend:
+#    image: eco-server:0.0.6
+#    container_name: server
+#    networks:
+#      - back-tier
 
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'eco_db'
+      MYSQL_DATABASE: 'eco-db'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
       # You can use whatever password you like
@@ -34,6 +34,8 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+#    networks:
+#      - back-tier
 # Names our volume
 volumes:
   my-db:
