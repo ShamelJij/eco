@@ -120,12 +120,8 @@ function deleteDeviceBtn(element) {
     let name = document.getElementById("nameInput" + deviceId).value;
     let avgConsumption = document.getElementById("avgConsumptionInput" + deviceId).value;
     let avgDuration = document.getElementById("avgDurationInput" + deviceId).value;
-    let deviceString = "{\"deviceId\":\"" + deviceId + "\","
-                       + "\"name\":\"" + name + "\","
-                       + "\"avgConsumption\":\"" + avgConsumption + "\","
-                       + "\"avgDuration\":\"" + avgDuration + "\"}";
-    console.log(deviceString);
-    deleteDevice(JSON.parse(deviceString)).then(function(){
+    let deviceToDelete = buildDeviceJson(deviceId, name, avgConsumption, avgDuration, true);
+    updateDevice(deviceToDelete).then(function(response){
         updateDevicesTable();
     });
 }
@@ -135,12 +131,9 @@ function saveUpdateDeviceBtn(element) {
     let name = document.getElementById("nameInput" + deviceId).value;
     let avgConsumption = document.getElementById("avgConsumptionInput" + deviceId).value;
     let avgDuration = document.getElementById("avgDurationInput" + deviceId).value;
-    let deviceString = "{\"deviceId\":\"" + deviceId + "\","
-                       + "\"name\":\"" + name + "\","
-                       + "\"avgConsumption\":\"" + avgConsumption + "\","
-                       + "\"avgDuration\":\"" + avgDuration + "\"}";
+    let deviceToUpdate = buildDeviceJson(deviceId, name, avgConsumption, avgDuration, false);
 
-    updateDevice(JSON.parse(deviceString)).then(function(){
+    updateDevice(deviceToUpdate).then(function(){
         updateDevicesTable();
     });
 }
@@ -168,5 +161,15 @@ function addDeviceTableCellWithInput(row, rowId, attribute, value) {
     newCell.appendChild(newInput);
     return row;
 }
+
+function buildDeviceJson(deviceId, name, avgConsumption, avgDuration, deleted) {
+    return JSON.parse("{\"deviceId\":\"" + deviceId + "\","
+        + "\"name\":\"" + name + "\","
+        + "\"avgConsumption\":\"" + avgConsumption + "\","
+        + "\"deleted\":\"" + deleted + "\","
+        + "\"avgDuration\":\"" + avgDuration + "\"}");
+}
+
+
 
 

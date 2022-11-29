@@ -116,12 +116,11 @@ export class Events {
     let deviceId = document.getElementById('deviceId').value;
     let avgConsumption = document.getElementById('avgConsumption').value;
     let avgDuration = document.getElementById('avgDuration').value;
-    let deviceString = "{\"deviceId\":\"" + deviceId + "\","
-                       + "\"name\":\"" + deviceName + "\","
-                       + "\"avgConsumption\":\"" + avgConsumption + "\","
-                       + "\"avgDuration\":\"" + avgDuration + "\"}";
-    addDevice(JSON.parse(deviceString)).then(
-    updateDevicesTable());
+    let device = buildDeviceJson(deviceId, deviceName, avgConsumption, avgDuration, false);
+    console.log(device);
+    addDevice(device).then(function() {
+      updateDevicesTable()
+    });
   }
 
   deviceCancelUpdateBtn() {

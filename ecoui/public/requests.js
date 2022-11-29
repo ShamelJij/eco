@@ -124,32 +124,21 @@ async function getById(id) {
 }
 
 async function post(url, json) {
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("POST", url);
-  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  // xhr.send(JSON.stringify(json));
-
-  // xhr.onload = function () {
-  //   if (xhr.status === 201) {
-  //     console.log("Post successfully created!");
-  //   } else if (xhr.status === 400) {
-  //     console.log("400 (Bad Request)");
-  //   }
-  // };
-
-  let promise = new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
-    xhr.responseType = "json";
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhr.onload = function () {
-      if (xhr.status === 201) {
-        console.log("Post successfully created!");
-      } else if (xhr.status === 400) {
-        console.log("400 (Bad Request)");
+  let promise = new Promise(function (resolve, reject) {
+    let req = new XMLHttpRequest();
+    req.open('post', url);
+    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    req.onload = function () {
+      if (req.status == 200) {
+        resolve(req.response);
+      } else {
+        reject(Error(req.statusText));
       }
     };
-    xhr.send(JSON.stringify(json));
+    req.onerror = function () {
+      reject(Error("Network Error"));
+    }; 
+    req.send(JSON.stringify(json));
   });
   return promise;
 }

@@ -1,42 +1,35 @@
 services:
-#  frontend:
-#    image: eco-ui:0.0.5
-#    container_name: ui
-#    ports:
-#      - "80:80"
-#    networks:
-#      - front-tier
-#      - back-tier
-#
-#  backend:
-#    image: eco-server:0.0.6
-#    container_name: server
-#    networks:
-#      - back-tier
+  frontend:
+    image: eco-ui:0.0.5
+    container_name: ui
+    ports:
+      - "80:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  backend:
+    image: eco-server:0.0.6
+    container_name: server
+    networks:
+      - back-tier
 
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'eco-db'
-      # So you don't have to use root, but you can if you like
+      MYSQL_DATABASE: 'eco_db'
       MYSQL_USER: 'user'
-      # You can use whatever password you like
       MYSQL_PASSWORD: 'password'
-      # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - '33060:3306'
+      - '3306:3306'
     expose:
-      # Opens port 3306 on the container
       - '3306'
-      # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
-#    networks:
-#      - back-tier
-# Names our volume
+    networks:
+      - back-tier
 volumes:
   my-db:
 
