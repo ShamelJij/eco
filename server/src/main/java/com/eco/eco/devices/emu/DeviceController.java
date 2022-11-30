@@ -5,11 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
@@ -91,4 +97,31 @@ public class DeviceController {
         }
         return null;
     }
+
+    @GetMapping("/solar")
+    public String getSolarData(@RequestBody Location location) {
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=35.5&lon=-78.5"))
+                .header("X-RapidAPI-Key", "6f6cea9186msh3d3d606139c6847p1f79b0jsndfea831b38b3")
+                .header("X-RapidAPI-Host", "weatherbit-v1-mashape.p.rapidapi.com")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = null;
+        try {
+            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            String data = response.body();
+            System.out.println(data);
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> map = mapper.readValue(data, Map.class);
+            List<Map<String, Object>> dataObjects =  (List) map.get("data");
+            Map<Object, Object> dataToSend =  dataObjects.stream().collect(Collectors.toMap(s -> s.get("timestamp_local"), s -> s.get("solar_rad")));
+            String jsonResp = mapper.writeValueAsString(dataToSend);
+            return jsonResp;
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+        return "{}";
+
+}
 }
